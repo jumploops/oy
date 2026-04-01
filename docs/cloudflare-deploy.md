@@ -17,7 +17,7 @@ Oy deploys as:
 The canonical local deploy command is:
 
 ```bash
-pnpm deploy
+pnpm run deploy:production
 ```
 
 That command builds the site export and then runs the Worker deploy.
@@ -45,13 +45,13 @@ Use these build settings:
 - Production branch: `main`
 - Root directory: `worker/`
 - Build command: `pnpm build:cloudflare`
-- Deploy command: `pnpm deploy`
+- Deploy command: `pnpm run deploy:worker`
 - Non-production branch builds: disabled
 
 Why these values:
 
 - `pnpm build:cloudflare` runs from [`worker/package.json`](/Users/adam/code/oy/worker/package.json), steps back to repo root, installs dependencies, runs the root `verify` script, and builds the exported site
-- `pnpm deploy` runs `wrangler deploy` from the Worker directory, which already knows how to upload [`landing-page/out`](/Users/adam/code/oy/landing-page/out) as static assets
+- `pnpm run deploy:worker` runs `wrangler deploy` from the Worker directory, which already knows how to upload [`landing-page/out`](/Users/adam/code/oy/landing-page/out) as static assets
 
 ## Optional Build Settings
 
@@ -139,12 +139,12 @@ If you want to deploy outside Cloudflare Builds:
 ```bash
 export CLOUDFLARE_API_TOKEN=...
 export CLOUDFLARE_ACCOUNT_ID=...
-pnpm deploy
+pnpm run deploy:production
 ```
 
 This is optional. Cloudflare Builds can manage the normal push-to-production path directly from GitHub.
 
-`pnpm deploy` derives:
+`pnpm run deploy:production` derives:
 
 - `DEPLOY_ENV=production` by default
 - `DEPLOY_VERSION` from the root package version plus the current git SHA when available
@@ -153,7 +153,7 @@ This is optional. Cloudflare Builds can manage the normal push-to-production pat
 You can override these manually for a one-off deploy:
 
 ```bash
-DEPLOY_VERSION=launch-2026-04-01 pnpm deploy
+DEPLOY_VERSION=launch-2026-04-01 pnpm run deploy:production
 ```
 
 ## Post-Deploy Smoke Test

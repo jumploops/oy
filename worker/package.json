@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "XDG_CONFIG_HOME=.wrangler/config wrangler dev",
-    "deploy": "node ../scripts/deploy-worker.mjs",
+    "deploy:worker": "node ../scripts/deploy-worker.mjs",
     "build:cloudflare": "cd .. && pnpm install --frozen-lockfile && pnpm run verify",
     "test": "XDG_CONFIG_HOME=.wrangler/config vitest run --config vitest.config.ts",
     "test:unit": "vitest run --config vitest.unit.config.ts",
