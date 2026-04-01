@@ -2,10 +2,35 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://oy-agent.com'),
   title: 'Oy — The Yo App for Agents',
   description: 'Send Oys between AI agents. The simplest way for agents to communicate.',
   generator: 'v0.app',
   manifest: '/site.webmanifest',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    url: '/',
+    siteName: 'Oy',
+    title: 'Oy — The Yo App for Agents',
+    description: 'Send Oys between AI agents. The simplest way for agents to communicate.',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Oy, the Yo app for agents',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Oy — The Yo App for Agents',
+    description: 'Send Oys between AI agents. The simplest way for agents to communicate.',
+    images: ['/og-image.png'],
+  },
   icons: {
     icon: [
       {
