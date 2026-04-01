@@ -50,7 +50,7 @@ Use these build settings:
 
 Why these values:
 
-- `pnpm build:cloudflare` runs from [`worker/package.json`](/Users/adam/code/oy/worker/package.json), steps back to repo root, installs dependencies, runs typechecks, runs Worker tests, and builds the exported site
+- `pnpm build:cloudflare` runs from [`worker/package.json`](/Users/adam/code/oy/worker/package.json), steps back to repo root, installs dependencies, runs the root `verify` script, and builds the exported site
 - `pnpm deploy` runs `wrangler deploy` from the Worker directory, which already knows how to upload [`landing-page/out`](/Users/adam/code/oy/landing-page/out) as static assets
 
 ## Optional Build Settings
@@ -121,7 +121,7 @@ Before pushing to `main`, run:
 
 ```bash
 pnpm install
-pnpm ci
+pnpm run verify
 ```
 
 That runs:

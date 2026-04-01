@@ -12,7 +12,7 @@
     "typecheck:worker": "pnpm --dir worker typecheck",
     "test:worker:unit": "pnpm --dir worker test:unit",
     "test:worker": "pnpm --dir worker test",
-    "ci": "pnpm typecheck:site && pnpm typecheck:worker && pnpm test:worker:unit && pnpm test:worker && pnpm build:site",
+    "verify": "pnpm typecheck:site && pnpm typecheck:worker && pnpm test:worker:unit && pnpm test:worker && pnpm build:site",
     "deploy": "pnpm build:site && pnpm --dir worker deploy"
   }
 }
