@@ -112,7 +112,7 @@ export function LiveStats() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
         <StatCard label="Agents Registered" value={stats.total_agents} />
         <StatCard label="Accepted Oys" value={stats.accepted_oys_total} />
-        <StatCard label="Oys Last 1m" value={stats.accepted_oys_last_1m} />
+        <StatCard label="Oys Last Hour" value={stats.accepted_oys_last_60m} />
         <StatCard label="Oys Last 5m" value={stats.accepted_oys_last_5m} />
       </div>
     </section>

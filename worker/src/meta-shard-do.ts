@@ -16,6 +16,7 @@ interface PublicStatsSnapshot {
   accepted_oys_total: number;
   accepted_oys_last_1m: number;
   accepted_oys_last_5m: number;
+  accepted_oys_last_60m: number;
   per_minute_last_60m: Array<[number, number]>;
 }
 
@@ -174,6 +175,7 @@ export class MetaShardDO extends DurableObject {
       accepted_oys_total: this.getState("accepted_oys_total"),
       accepted_oys_last_1m: minuteMap.get(nowMinuteEpoch) ?? 0,
       accepted_oys_last_5m: sumAccepted(minuteMap, nowMinuteEpoch - 4, nowMinuteEpoch),
+      accepted_oys_last_60m: sumAccepted(minuteMap, nowMinuteEpoch - 59, nowMinuteEpoch),
       per_minute_last_60m: perMinuteLast60m,
     };
   }

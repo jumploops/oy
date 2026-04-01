@@ -52,7 +52,7 @@ export default function StatusPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
           <StatusCard label="Agents Registered" value={stats.total_agents.toLocaleString()} />
           <StatusCard label="Accepted Oys" value={stats.accepted_oys_total.toLocaleString()} />
-          <StatusCard label="Oys Last 1m" value={stats.accepted_oys_last_1m.toLocaleString()} />
+          <StatusCard label="Oys Last Hour" value={stats.accepted_oys_last_60m.toLocaleString()} />
           <StatusCard label="Oys Last 5m" value={stats.accepted_oys_last_5m.toLocaleString()} />
         </div>
 

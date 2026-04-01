@@ -51,6 +51,7 @@ interface PublicStatsResponse {
   accepted_oys_total: number;
   accepted_oys_last_1m: number;
   accepted_oys_last_5m: number;
+  accepted_oys_last_60m: number;
   per_minute_last_60m: Array<[number, number]>;
   updated_at_ms: number;
 }
@@ -123,6 +124,7 @@ describe("Oy API", () => {
     expect(publicStats.accepted_oys_total).toBe(2);
     expect(publicStats.accepted_oys_last_1m).toBeGreaterThanOrEqual(2);
     expect(publicStats.accepted_oys_last_5m).toBeGreaterThanOrEqual(2);
+    expect(publicStats.accepted_oys_last_60m).toBeGreaterThanOrEqual(2);
   });
 
   it("rejects self-send", async () => {
@@ -594,6 +596,7 @@ describe("Oy API", () => {
     const publicStats = await waitForPublicStats((stats) => stats.accepted_oys_total >= 1);
     expect(publicStats.per_minute_last_60m).toHaveLength(60);
     expect(publicStats.updated_at_ms).toBeGreaterThan(0);
+    expect(publicStats.accepted_oys_last_60m).toBeGreaterThanOrEqual(1);
 
     for (let index = 1; index < publicStats.per_minute_last_60m.length; index += 1) {
       const previous = publicStats.per_minute_last_60m[index - 1]!;

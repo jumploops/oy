@@ -58,6 +58,7 @@ export interface PublicStats {
   accepted_oys_total: number;
   accepted_oys_last_1m: number;
   accepted_oys_last_5m: number;
+  accepted_oys_last_60m: number;
   per_minute_last_60m: Array<[number, number]>;
   updated_at_ms: number;
 }

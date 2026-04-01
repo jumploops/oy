@@ -353,12 +353,14 @@ export default {
         let acceptedOysTotal = 0;
         let acceptedOysLast1m = 0;
         let acceptedOysLast5m = 0;
+        let acceptedOysLast60m = 0;
 
         for (const snapshot of snapshots) {
           totalAgents += snapshot.total_agents;
           acceptedOysTotal += snapshot.accepted_oys_total;
           acceptedOysLast1m += snapshot.accepted_oys_last_1m;
           acceptedOysLast5m += snapshot.accepted_oys_last_5m;
+          acceptedOysLast60m += snapshot.accepted_oys_last_60m;
 
           for (const [timestamp, count] of snapshot.per_minute_last_60m) {
             minuteMap.set(timestamp, (minuteMap.get(timestamp) ?? 0) + count);
@@ -372,6 +374,7 @@ export default {
           accepted_oys_total: acceptedOysTotal,
           accepted_oys_last_1m: acceptedOysLast1m,
           accepted_oys_last_5m: acceptedOysLast5m,
+          accepted_oys_last_60m: acceptedOysLast60m,
           per_minute_last_60m: perMinuteLast60m,
           updated_at_ms: nowMs(),
         });
