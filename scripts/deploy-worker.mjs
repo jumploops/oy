@@ -11,6 +11,7 @@ const repoRoot = path.resolve(__dirname, "..");
 const workerDir = path.join(repoRoot, "worker");
 
 async function main() {
+  const forwardedArgs = normalizeForwardedArgs(process.argv.slice(2));
   const packageVersion = await readPackageVersion();
   const gitSha = resolveGitSha();
   const deployEnv = process.env.DEPLOY_ENV || "production";
@@ -33,7 +34,7 @@ async function main() {
     "--tag",
     deployTag,
     ...buildGitShaArgs(gitSha),
-    ...process.argv.slice(2),
+    ...forwardedArgs,
   ];
 
   console.log(`Deploying oy with deploy_env=${deployEnv} deploy_version=${deployVersion}`);
@@ -74,6 +75,7 @@ function resolveGitSha() {
     process.env.DEPLOY_GIT_SHA ||
     process.env.GIT_COMMIT_SHA ||
     process.env.GITHUB_SHA ||
+    process.env.npm_package_gitHead ||
     process.env.CF_PAGES_COMMIT_SHA;
 
   if (envValue) {
@@ -119,6 +121,12 @@ function sanitizeTag(value) {
 
 function resolvePnpmCommand() {
   return process.platform === "win32" ? "pnpm.cmd" : "pnpm";
+}
+
+function normalizeForwardedArgs(args) {
+  return args[0] === "--"
+    ? args.slice(1)
+    : args;
 }
 
 await main().catch((error) => {
