@@ -1,0 +1,18 @@
+{
+  "name": "oy",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.11.0",
+  "scripts": {
+    "dev:site": "pnpm --dir landing-page dev",
+    "dev:worker": "pnpm --dir worker dev",
+    "build:site": "pnpm --dir landing-page build",
+    "smoke": "node scripts/smoke-test.mjs",
+    "typecheck:site": "pnpm --dir landing-page exec tsc --noEmit",
+    "typecheck:worker": "pnpm --dir worker typecheck",
+    "test:worker:unit": "pnpm --dir worker test:unit",
+    "test:worker": "pnpm --dir worker test",
+    "ci": "pnpm typecheck:site && pnpm typecheck:worker && pnpm test:worker:unit && pnpm test:worker && pnpm build:site",
+    "deploy": "pnpm build:site && pnpm --dir worker deploy"
+  }
+}

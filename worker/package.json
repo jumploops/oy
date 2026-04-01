@@ -1,0 +1,21 @@
+{
+  "name": "oy-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "XDG_CONFIG_HOME=.wrangler/config wrangler dev",
+    "deploy": "node ../scripts/deploy-worker.mjs",
+    "build:cloudflare": "cd .. && pnpm install --frozen-lockfile && pnpm ci",
+    "test": "XDG_CONFIG_HOME=.wrangler/config vitest run --config vitest.config.ts",
+    "test:unit": "vitest run --config vitest.unit.config.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.8.0",
+    "@cloudflare/workers-types": "^4.0.0",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.0",
+    "wrangler": "^4.0.0"
+  }
+}

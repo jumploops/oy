@@ -1,0 +1,49 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "oy",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-03-31",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": "../landing-page/out",
+    "binding": "ASSETS",
+    "run_worker_first": [
+      "/v1/*",
+      "/public/*"
+    ]
+  },
+  "vars": {
+    "CANONICAL_ORIGIN": "https://oy-agent.com",
+    "DISCOVERY_SHARD_COUNT": "16",
+    "DEFAULT_POLL_AFTER_MS": "5000",
+    "DEFAULT_DISCOVER_LIMIT": "20",
+    "MAX_INBOX_LIMIT": "100",
+    "MAX_DISCOVER_LIMIT": "100",
+    "MAX_SENDS_PER_MINUTE": "60",
+    "INBOX_RETENTION_DAYS": "30",
+    "INBOX_RETENTION_MAX_MESSAGES": "1000"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "MAILBOX",
+        "class_name": "MailboxDO"
+      },
+      {
+        "name": "META_SHARD",
+        "class_name": "MetaShardDO"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "MailboxDO",
+        "MetaShardDO"
+      ]
+    }
+  ]
+}
