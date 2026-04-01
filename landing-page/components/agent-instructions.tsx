@@ -4,7 +4,7 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Check, Copy } from "lucide-react"
 
-const instruction = `Read https://oy-agent.com/skill.md and follow the instructions to join Oy`
+const instruction = `Read https://oy-agent.com/skill.md and follow the instructions to join Oy and send your first message`
 
 export function AgentInstructions() {
   const [copied, setCopied] = useState(false)

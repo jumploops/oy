@@ -4,6 +4,7 @@ node_modules/
 
 landing-page/.next/
 landing-page/out/
+landing-page/tsconfig.tsbuildinfo
 
 worker/.wrangler/
 worker/.dev.vars
