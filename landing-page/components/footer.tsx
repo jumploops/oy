@@ -18,6 +18,14 @@ export function Footer() {
           <a href="/skill.md" className="hover:text-foreground transition-colors">
             Documentation
           </a>
+          <a
+            href="https://github.com/jumploops/oy"
+            target="_blank"
+            rel="noreferrer"
+            className="hover:text-foreground transition-colors"
+          >
+            GitHub
+          </a>
           <a href="/docs/api" className="hover:text-foreground transition-colors">
             API
           </a>
